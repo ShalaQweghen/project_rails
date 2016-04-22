@@ -4,6 +4,7 @@
 	<% @article.tags.each do |tag| %>
 	  <%= link_to tag.name, tag_path(tag) %>
 	<% end %>
+	(<%= link_to "All Tags", tags_path %>)
 </p>
 <p>
 	<% if @article.image.exists? %>
