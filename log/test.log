@@ -1,0 +1,68 @@
+  [1m[36m (109.5ms)[0m  [1mCREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "image_file_name" varchar, "image_content_type" varchar, "image_file_size" integer, "image_updated_at" datetime) [0m
+  [1m[35m (131.9ms)[0m  CREATE TABLE "author_articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "author_id" integer, "article_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (195.1ms)[0m  CREATE  INDEX "index_author_articles_on_article_id" ON "author_articles" ("article_id")
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_author_articles_on_article_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_author_articles_on_article_id' AND type='index'
+[0m
+  [1m[35m (142.7ms)[0m  CREATE  INDEX "index_author_articles_on_author_id" ON "author_articles" ("author_id")
+  [1m[36m (132.2ms)[0m  [1mCREATE TABLE "authors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "email" varchar NOT NULL, "crypted_password" varchar NOT NULL, "salt" varchar NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (142.1ms)[0m  CREATE UNIQUE INDEX "index_authors_on_email" ON "authors" ("email")
+  [1m[36m (141.0ms)[0m  [1mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "author_name" varchar, "body" text, "article_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (146.0ms)[0m  CREATE  INDEX "index_comments_on_article_id" ON "comments" ("article_id")
+  [1m[36m (143.4ms)[0m  [1mCREATE TABLE "taggings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tag_id" integer, "article_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (143.9ms)[0m  CREATE  INDEX "index_taggings_on_article_id" ON "taggings" ("article_id")
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_taggings_on_article_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_taggings_on_article_id' AND type='index'
+[0m
+  [1m[35m (197.6ms)[0m  CREATE  INDEX "index_taggings_on_tag_id" ON "taggings" ("tag_id")
+  [1m[36m (175.9ms)[0m  [1mCREATE TABLE "tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (177.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (277.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.3ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (133.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160421163239')[0m
+  [1m[35m (111.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160420053054')
+  [1m[36m (145.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160421070036')[0m
+  [1m[35m (155.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160421103103')
+  [1m[36m (166.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160421070009')[0m
+  [1m[35m (143.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160421113439')
+  [1m[36m (145.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160419184522')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM "authors"[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2016-04-22 17:22:51', '2016-04-22 17:22:51', 980190962)
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "authors"[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2016-04-22 17:22:52', '2016-04-22 17:22:52', 980190962)
+  [1m[36m (1.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "authors"[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2016-04-22 17:22:52', '2016-04-22 17:22:52', 980190962)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "authors"[0m
+  [1m[35mFixture Insert (1.2ms)[0m  INSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2016-04-22 17:22:52', '2016-04-22 17:22:52', 980190962)
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "authors"[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2016-04-22 17:22:52', '2016-04-22 17:22:52', 980190962)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "authors"[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2016-04-22 17:22:52', '2016-04-22 17:22:52', 980190962)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "authors"[0m
+  [1m[35mFixture Insert (0.5ms)[0m  INSERT INTO "authors" ("created_at", "updated_at", "id") VALUES ('2016-04-22 17:22:52', '2016-04-22 17:22:52', 980190962)
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
